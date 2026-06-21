@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio BUT R&T — Cybersécurité</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════ */
+:root {
+  --bg:          #020d18;
+  --bg2:         #05172b;
+  --bg3:         #071f3a;
+  --teal:        #00dfc4;
+  --teal-dim:    #00a896;
+  --teal-glow:   rgba(0,223,196,.12);
+  --teal-ghost:  rgba(0,223,196,.06);
+  --amber:       #f0a500;
+  --amber-ghost: rgba(240,165,0,.10);
+  --red:         #ff4d6a;
+  --blue:        #3a9fff;
+  --text:        #d6edf5;
+  --text-mid:    #7fb3cb;
+  --text-dim:    #3a6a85;
+  --border:      #0c3050;
+  --border2:     rgba(0,223,196,.18);
+  --fd: 'Syne', sans-serif;
+  --fm: 'IBM Plex Mono', monospace;
+  --fb: 'IBM Plex Sans', sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--fb);
+  font-weight:400;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+img{display:block;max-width:100%}
+
+/* ═══════════════════════════════════════
+   HEX GRID BACKGROUND
+═══════════════════════════════════════ */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97'%3E%3Cpath d='M28 1 L55 16.5 L55 49.5 L28 65 L1 49.5 L1 16.5Z' fill='none' stroke='%23082840' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-size:56px 97px;
+  opacity:.55;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 3rem;
+  background:rgba(2,13,24,.85);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav-brand{
+  font-family:var(--fm);
+  font-size:.8rem;
+  color:var(--teal);
+  letter-spacing:.05em;
+}
+.nav-brand span{color:var(--text-dim)}
+.nav-links{
+  display:flex;gap:2rem;list-style:none;
+}
+.nav-links a{
+  font-family:var(--fm);
+  font-size:.72rem;
+  color:var(--text-mid);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--teal);text-decoration:none}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:7rem 3rem 4rem;
+  overflow:hidden;
+}
+/* Sonar rings */
+.sonar{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:700px;height:700px;
+  pointer-events:none;
+}
+.ring{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  border:1px solid var(--teal);
+  opacity:0;
+  animation:sonar 4s ease-out infinite;
+}
+.ring:nth-child(1){width:150px;height:150px;animation-delay:0s}
+.ring:nth-child(2){width:300px;height:300px;animation-delay:.8s}
+.ring:nth-child(3){width:470px;height:470px;animation-delay:1.6s}
+.ring:nth-child(4){width:650px;height:650px;animation-delay:2.4s}
+@keyframes sonar{
+  0%  {opacity:.6;transform:translate(-50%,-50%) scale(.85)}
+  100%{opacity:0; transform:translate(-50%,-50%) scale(1)}
+}
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:820px;
+  display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;
+}
+.hero-tag{
+  font-family:var(--fm);
+  font-size:.72rem;
+  color:var(--teal);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.hero-tag::before{
+  content:'';
+  display:inline-block;width:28px;height:1px;
+  background:var(--teal);
+}
+h1.hero-name{
+  font-family:var(--fd);
+  font-size:clamp(2.8rem,5vw,4.5rem);
+  font-weight:800;
+  line-height:1.05;
+  color:#fff;
+  letter-spacing:-.02em;
+  margin-bottom:.6rem;
+}
+.hero-name span{color:var(--teal)}
+.hero-subtitle{
+  font-family:var(--fm);
+  font-size:.85rem;
+  color:var(--text-mid);
+  margin-bottom:1.8rem;
+}
+.hero-bio{
+  font-size:1rem;
+  color:var(--text);
+  max-width:520px;
+  line-height:1.8;
+  border-left:2px solid var(--teal-dim);
+  padding-left:1.2rem;
+  margin-bottom:2rem;
+}
+.hero-chips{
+  display:flex;flex-wrap:wrap;gap:.5rem;
+}
+.chip{
+  font-family:var(--fm);
+  font-size:.7rem;
+  padding:.3rem .75rem;
+  border:1px solid var(--border2);
+  border-radius:2px;
+  color:var(--teal);
+  background:var(--teal-ghost);
+  letter-spacing:.05em;
+}
+/* Identity card */
+.id-card{
+  background:var(--bg3);
+  border:1px solid var(--border2);
+  border-radius:4px;
+  padding:1.5rem;
+  min-width:200px;
+  font-family:var(--fm);
+  font-size:.72rem;
+  line-height:2;
+  color:var(--text-mid);
+}
+.id-card .id-title{
+  font-size:.65rem;
+  color:var(--teal);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+  padding-bottom:.6rem;
+  margin-bottom:.8rem;
+}
+.id-card strong{color:var(--text)}
+
+/* ═══════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════ */
+section{
+  position:relative;z-index:1;
+  padding:5rem 3rem;
+  max-width:1100px;
+  margin:0 auto;
+}
+.section-label{
+  font-family:var(--fm);
+  font-size:.68rem;
+  color:var(--teal);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:.8rem;
+}
+h2.section-title{
+  font-family:var(--fd);
+  font-size:clamp(1.9rem,3.5vw,2.8rem);
+  font-weight:700;
+  color:#fff;
+  letter-spacing:-.01em;
+  margin-bottom:.5rem;
+}
+.section-divider{
+  width:48px;height:2px;
+  background:var(--teal);
+  margin:1rem 0 2.5rem;
+}
+
+/* ═══════════════════════════════════════
+   COMPETENCE OVERVIEW GRID
+═══════════════════════════════════════ */
+#competences{
+  padding-top:0;
+}
+.comp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+  margin-top:1.5rem;
+}
+.comp-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-top:3px solid var(--teal);
+  border-radius:4px;
+  padding:1.5rem;
+  transition:border-color .3s,background .3s;
+}
+.comp-card:hover{
+  border-color:var(--teal);
+  background:var(--bg3);
+}
+.comp-card .comp-num{
+  font-family:var(--fm);
+  font-size:.65rem;
+  color:var(--teal);
+  letter-spacing:.15em;
+  margin-bottom:.5rem;
+}
+.comp-card h3{
+  font-family:var(--fd);
+  font-size:1.3rem;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:.3rem;
+}
+.comp-card .comp-level{
+  font-family:var(--fm);
+  font-size:.72rem;
+  color:var(--text-dim);
+  margin-bottom:1rem;
+}
+.signal-bars{
+  display:flex;gap:4px;align-items:flex-end;margin-bottom:1rem;
+}
+.signal-bars span{
+  display:block;width:10px;
+  background:var(--border);
+  border-radius:1px;
+}
+.signal-bars span:nth-child(1){height:8px}
+.signal-bars span:nth-child(2){height:14px}
+.signal-bars span:nth-child(3){height:20px}
+.signal-bars span:nth-child(4){height:26px}
+.signal-bars.s1 span:nth-child(1){background:var(--teal)}
+.signal-bars.s2 span:nth-child(1),.signal-bars.s2 span:nth-child(2){background:var(--teal)}
+.signal-bars.s3 span:nth-child(1),.signal-bars.s3 span:nth-child(2),.signal-bars.s3 span:nth-child(3){background:var(--teal)}
+.signal-bars.s4 span{background:var(--teal)}
+.comp-card p{
+  font-size:.85rem;
+  color:var(--text-mid);
+}
+
+/* ═══════════════════════════════════════
+   COMPETENCE FULL SECTION
+═══════════════════════════════════════ */
+.competence-section{
+  max-width:1100px;
+  margin:0 auto;
+  padding:5rem 3rem;
+}
+.comp-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+  margin-bottom:2.5rem;
+}
+.comp-badge{
+  display:inline-block;
+  font-family:var(--fm);
+  font-size:.65rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:.35rem .9rem;
+  border-radius:2px;
+  margin-bottom:.8rem;
+}
+.badge-admin{background:rgba(0,223,196,.12);color:var(--teal);border:1px solid rgba(0,223,196,.3)}
+.badge-connecter{background:rgba(58,159,255,.1);color:var(--blue);border:1px solid rgba(58,159,255,.3)}
+.badge-programmer{background:rgba(240,165,0,.1);color:var(--amber);border:1px solid rgba(240,165,0,.3)}
+.comp-section-title{
+  font-family:var(--fd);
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-.02em;
+  line-height:1.1;
+}
+.comp-section-title span{color:var(--teal)}
+.comp-section-title.blue span{color:var(--blue)}
+.comp-section-title.amber span{color:var(--amber)}
+.comp-meta{
+  font-family:var(--fm);
+  font-size:.75rem;
+  color:var(--text-dim);
+  margin-top:.5rem;
+}
+.ac-tags{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+  margin-bottom:2.5rem;
+}
+.ac-tag{
+  font-family:var(--fm);
+  font-size:.65rem;
+  padding:.25rem .6rem;
+  border:1px solid var(--border);
+  border-radius:2px;
+  color:var(--text-dim);
+  background:transparent;
+  transition:.2s;
+}
+.ac-tag:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-ghost)}
+
+/* Evidence card */
+.evidence-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-left:3px solid var(--teal);
+  border-radius:4px;
+  padding:2rem;
+  margin-bottom:1.5rem;
+}
+.evidence-card.blue-accent{border-left-color:var(--blue)}
+.evidence-card.amber-accent{border-left-color:var(--amber)}
+.evidence-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.2rem;
+  flex-wrap:wrap;gap:.8rem;
+}
+.evidence-title{
+  font-family:var(--fd);
+  font-size:1.25rem;
+  font-weight:600;
+  color:#fff;
+}
+.evidence-status{
+  font-family:var(--fm);
+  font-size:.65rem;
+  letter-spacing:.12em;
+  padding:.3rem .8rem;
+  border-radius:2px;
+}
+.status-valid{background:rgba(0,223,196,.1);color:var(--teal);border:1px solid rgba(0,223,196,.25)}
+.status-progress{background:rgba(240,165,0,.1);color:var(--amber);border:1px solid rgba(240,165,0,.25)}
+.evidence-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.2rem;
+  margin-bottom:1.5rem;
+}
+.ev-block label{
+  display:block;
+  font-family:var(--fm);
+  font-size:.65rem;
+  color:var(--teal);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:.35rem;
+}
+.ev-block p{
+  font-size:.88rem;
+  color:var(--text);
+  line-height:1.6;
+}
+.tech-pills{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+  margin-top:1rem;
+}
+.tech-pill{
+  font-family:var(--fm);
+  font-size:.68rem;
+  padding:.2rem .55rem;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:2px;
+  color:var(--text-mid);
+}
+.verdict-box{
+  background:var(--teal-ghost);
+  border:1px solid var(--border2);
+  border-radius:4px;
+  padding:1rem 1.4rem;
+  margin-top:1.2rem;
+  display:flex;gap:1rem;align-items:flex-start;
+}
+.verdict-box.blue{background:rgba(58,159,255,.05);border-color:rgba(58,159,255,.2)}
+.verdict-box.amber{background:var(--amber-ghost);border-color:rgba(240,165,0,.2)}
+.verdict-icon{
+  font-family:var(--fm);
+  font-size:.75rem;
+  color:var(--teal);
+  min-width:60px;
+  padding-top:.15rem;
+}
+.verdict-icon.blue{color:var(--blue)}
+.verdict-icon.amber{color:var(--amber)}
+.verdict-text{
+  font-size:.88rem;
+  color:var(--text);
+  line-height:1.7;
+}
+
+/* ═══════════════════════════════════════
+   BILAN
+═══════════════════════════════════════ */
+.bilan-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  margin-top:2rem;
+}
+.bilan-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:1.8rem;
+}
+.bilan-card h3{
+  font-family:var(--fd);
+  font-size:1.1rem;
+  font-weight:600;
+  color:#fff;
+  margin-bottom:1rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.bilan-card h3::before{
+  content:'';
+  display:inline-block;width:8px;height:8px;
+  border-radius:50%;
+  background:var(--teal);
+  flex-shrink:0;
+}
+.bilan-card p{
+  font-size:.88rem;
+  color:var(--text-mid);
+  line-height:1.8;
+}
+blockquote{
+  border-left:3px solid var(--teal);
+  padding:1.2rem 1.5rem;
+  margin:2rem 0;
+  background:var(--bg2);
+  border-radius:0 4px 4px 0;
+  font-style:italic;
+  color:var(--text);
+  font-size:1rem;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{
+  border-top:1px solid var(--border);
+  padding:2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-family:var(--fm);
+  font-size:.72rem;
+  color:var(--text-dim);
+}
+.footer-logo{color:var(--teal)}
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+/* ═══════════════════════════════════════
+   SEPARATOR LINE
+═══════════════════════════════════════ */
+.full-sep{
+  border:none;
+  border-top:1px solid var(--border);
+  max-width:none;
+  margin:0;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media(max-width:860px){
+  nav{padding:.75rem 1.5rem}
+  .nav-links{gap:1rem}
+  .hero{padding:5rem 1.5rem 3rem}
+  .hero-inner{grid-template-columns:1fr;gap:2rem}
+  .id-card{display:none}
+  .comp-grid{grid-template-columns:1fr}
+  .competence-section,section{padding:4rem 1.5rem}
+  .evidence-grid{grid-template-columns:1fr}
+  .bilan-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:.8rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav>
+  <div class="nav-brand">
+    <span>root@portfolio</span>:~<span>$</span> <span style="color:#fff">_</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero">home</a></li>
+    <li><a href="#administrer">administrer</a></li>
+    <li><a href="#connecter">connecter</a></li>
+    <li><a href="#programmer">programmer</a></li>
+    <li><a href="#bilan">bilan</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero" id="hero">
+  <div class="sonar" aria-hidden="true">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-tag">SAE 205 — Portfolio Oral</p>
+      <h1 class="hero-name">
+        <!-- ✏️ Remplace par ton prénom et nom -->
+        <span>Prénom</span> NOM
+      </h1>
+      <p class="hero-subtitle">
+        <!-- ✏️ Ton parcours -->
+        BUT R&amp;T · Option Cybersécurité · Année 1 · IUT [Ville]
+      </p>
+      <p class="hero-bio">
+        <!-- ✏️ Ta bio (2-3 phrases : d'où tu viens, pourquoi R&T, une passion) -->
+        Passionné par la sécurité des systèmes d'information, j'ai choisi le BUT R&T 
+        option Cybersécurité après avoir découvert l'univers des CTF et de l'administration 
+        réseau à travers mon homelab. Cette année m'a permis de poser les bases concrètes 
+        de mes compétences professionnelles.
+      </p>
+      <div class="hero-chips">
+        <!-- ✏️ Tes tags personnels -->
+        <span class="chip">📍 [Ville]</span>
+        <span class="chip">🔐 CTF Player</span>
+        <span class="chip">🎮 Homelab</span>
+        <span class="chip">⚽ [Ton sport]</span>
+      </div>
+    </div>
+    <div class="id-card">
+      <div class="id-title">// Identité</div>
+      <div><strong>Nom :</strong><br>[Prénom NOM]</div>
+      <div><strong>Formation :</strong><br>BUT R&amp;T · S2</div>
+      <div><strong>Option :</strong><br>Cybersécurité</div>
+      <div><strong>Année :</strong><br>2024–2025</div>
+      <div><strong>Référentiel :</strong><br>Annexe 22 MESRI</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ OVERVIEW COMPÉTENCES ═══ -->
+<section id="competences">
+  <p class="section-label reveal">// Vue d'ensemble</p>
+  <h2 class="section-title reveal">3 compétences — Niveau 1</h2>
+  <div class="section-divider reveal"></div>
+  <div class="comp-grid reveal">
+    <a href="#administrer" style="text-decoration:none">
+      <div class="comp-card">
+        <div class="comp-num">COMPÉTENCE 01</div>
+        <h3>Administrer</h3>
+        <p class="comp-level">Niveau 1 — Assister l'administrateur</p>
+        <div class="signal-bars s2" aria-label="Niveau en cours d'acquisition">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <p>Configurer, diagnostiquer et maintenir une infrastructure réseau locale sécurisée.</p>
+      </div>
+    </a>
+    <a href="#connecter" style="text-decoration:none">
+      <div class="comp-card">
+        <div class="comp-num">COMPÉTENCE 02</div>
+        <h3>Connecter</h3>
+        <p class="comp-level">Niveau 1 — Découvrir transmissions &amp; ToIP</p>
+        <div class="signal-bars s2" aria-label="Niveau en cours d'acquisition">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <p>Analyser les signaux, caractériser les supports de transmission et déployer la ToIP.</p>
+      </div>
+    </a>
+    <a href="#programmer" style="text-decoration:none">
+      <div class="comp-card">
+        <div class="comp-num">COMPÉTENCE 03</div>
+        <h3>Programmer</h3>
+        <p class="comp-level">Niveau 1 — S'intégrer dans un SI</p>
+        <div class="signal-bars s2" aria-label="Niveau en cours d'acquisition">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <p>Développer des outils et scripts adaptés aux besoins de l'équipe R&amp;T.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<hr class="full-sep">
+
+<!-- ═══ COMPÉTENCE 1 — ADMINISTRER ═══ -->
+<div class="competence-section" id="administrer">
+  <div class="comp-header reveal">
+    <div>
+      <span class="comp-badge badge-admin">Compétence 01 · AC11</span>
+      <h2 class="comp-section-title">Administrer<br><span>les réseaux</span></h2>
+      <p class="comp-meta">Niveau 1 · Assister l'administrateur du réseau</p>
+    </div>
+    <div class="signal-bars s2" style="margin-top:1rem" aria-label="2 barres sur 4 — en acquisition">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- Apprentissages critiques -->
+  <div class="reveal">
+    <p style="font-family:var(--fm);font-size:.7rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem">Apprentissages critiques ciblés</p>
+    <div class="ac-tags">
+      <span class="ac-tag">AC11.01 · Lois fondamentales électricité</span>
+      <span class="ac-tag">AC11.02 · Architecture systèmes numériques</span>
+      <span class="ac-tag">AC11.03 · Config fonctions réseau local</span>
+      <span class="ac-tag">AC11.04 · Systèmes d'exploitation</span>
+      <span class="ac-tag">AC11.05 · Dysfonctionnements réseau</span>
+      <span class="ac-tag">AC11.06 · Installation poste client</span>
+    </div>
+  </div>
+
+  <!-- Preuve principale -->
+  <div class="evidence-card reveal">
+    <div class="evidence-header">
+      <div>
+        <p style="font-family:var(--fm);font-size:.65rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">// Trace → Preuve</p>
+        <div class="evidence-title">
+          <!-- ✏️ Titre de ton TP / SAE -->
+          Configuration d'une infrastructure réseau en VLANs sécurisés
+        </div>
+      </div>
+      <span class="evidence-status status-valid">✓ VALIDÉ</span>
+    </div>
+    <div class="evidence-grid">
+      <div class="ev-block">
+        <label>Trace (sur Compact)</label>
+        <p>
+          <!-- ✏️ Décris la trace que tu as dans Compact -->
+          TP Cisco Packet Tracer : schéma du réseau, captures d'écran des configurations IOS, 
+          rapport de test de connectivité et analyse Wireshark.
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Objectif</label>
+        <p>
+          <!-- ✏️ Quel était l'objectif du TP ? -->
+          Segmenter le réseau d'une PME fictive en 3 VLANs (Admin, Users, DMZ), 
+          configurer le routage inter-VLAN et mettre en place des ACLs pour isoler la DMZ.
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Ce que j'ai fait</label>
+        <p>
+          <!-- ✏️ Ce que tu as réellement réalisé -->
+          Configuration des switches Cisco (trunk/access), paramétrage du routeur, 
+          mise en place des ACLs, vérification via ping et traceroute, analyse des trames avec Wireshark.
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Défi rencontré</label>
+        <p>
+          <!-- ✏️ Un problème concret que tu as dû résoudre -->
+          Mauvaise configuration du port trunk entre deux switches → aucune communication inter-VLAN. 
+          Résolu en vérifiant l'encapsulation dot1Q et la liste des VLANs autorisés sur le trunk.
+        </p>
+      </div>
+    </div>
+    <div class="ev-block" style="margin-bottom:1rem">
+      <label>Technologies &amp; outils utilisés</label>
+      <div class="tech-pills">
+        <span class="tech-pill">Cisco IOS</span>
+        <span class="tech-pill">Packet Tracer</span>
+        <span class="tech-pill">Wireshark</span>
+        <span class="tech-pill">VLANs 802.1Q</span>
+        <span class="tech-pill">ACLs</span>
+        <span class="tech-pill">Routage inter-VLAN</span>
+        <!-- ✏️ Ajoute tes propres outils -->
+      </div>
+    </div>
+    <div class="verdict-box">
+      <span class="verdict-icon">// VERDICT</span>
+      <p class="verdict-text">
+        <!-- ✏️ Ce que tu retiens, ce que ça prouve sur ta compétence -->
+        Cette preuve démontre ma capacité à <strong>configurer les fonctions de base d'un réseau local</strong> 
+        (AC11.03) et à identifier et résoudre des dysfonctionnements (AC11.05). J'ai compris que la 
+        segmentation réseau est un pilier de la cybersécurité : sans isolation correcte, une compromission 
+        d'un segment peut se propager à l'ensemble du SI.
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr class="full-sep">
+
+<!-- ═══ COMPÉTENCE 2 — CONNECTER ═══ -->
+<div class="competence-section" id="connecter">
+  <div class="comp-header reveal">
+    <div>
+      <span class="comp-badge badge-connecter">Compétence 02 · AC12</span>
+      <h2 class="comp-section-title blue">Connecter<br><span>les entreprises</span></h2>
+      <p class="comp-meta">Niveau 1 · Découvrir les transmissions et la ToIP</p>
+    </div>
+    <div class="signal-bars s2" style="margin-top:1rem">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p style="font-family:var(--fm);font-size:.7rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem">Apprentissages critiques ciblés</p>
+    <div class="ac-tags">
+      <span class="ac-tag" style="border-color:rgba(58,159,255,.25);color:var(--blue)">AC12.01 · Mesurer &amp; analyser les signaux</span>
+      <span class="ac-tag" style="border-color:rgba(58,159,255,.25);color:var(--blue)">AC12.02 · Caractériser systèmes élémentaires</span>
+      <span class="ac-tag" style="border-color:rgba(58,159,255,.25);color:var(--blue)">AC12.03 · Déployer supports de transmission</span>
+      <span class="ac-tag" style="border-color:rgba(58,159,255,.25);color:var(--blue)">AC12.04 · Connecter systèmes ToIP</span>
+      <span class="ac-tag" style="border-color:rgba(58,159,255,.25);color:var(--blue)">AC12.05 · Communiquer avec un tiers</span>
+    </div>
+  </div>
+
+  <div class="evidence-card blue-accent reveal">
+    <div class="evidence-header">
+      <div>
+        <p style="font-family:var(--fm);font-size:.65rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">// Trace → Preuve</p>
+        <div class="evidence-title">
+          <!-- ✏️ Titre de ta preuve -->
+          Déploiement et analyse d'une solution ToIP avec Asterisk
+        </div>
+      </div>
+      <span class="evidence-status status-valid">✓ VALIDÉ</span>
+    </div>
+    <div class="evidence-grid">
+      <div class="ev-block">
+        <label>Trace (sur Compact)</label>
+        <p>
+          <!-- ✏️ Ta trace Compact -->
+          Rapport de SAE : captures Wireshark de flux SIP/RTP, enregistrement de softphones, 
+          analyse spectrale du signal audio et schéma de déploiement.
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Objectif</label>
+        <p>
+          <!-- ✏️ Objectif -->
+          Configurer un IPBX Asterisk, enregistrer deux softphones, passer des appels et 
+          analyser les protocoles SIP (signalisation) et RTP (flux audio) avec Wireshark.
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Ce que j'ai fait</label>
+        <p>
+          <!-- ✏️ Actions concrètes -->
+          Installation d'Asterisk sur Debian, création de comptes SIP, configuration des softphones 
+          Linphone, capture et analyse des échanges SIP INVITE/200 OK et flux RTP, mesure de la qualité (jitter, latence).
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Défi rencontré</label>
+        <p>
+          <!-- ✏️ Problème et résolution -->
+          Problème de NAT empêchant la négociation SDP → appels sans audio. 
+          Résolu en configurant la directive nat=yes dans sip.conf et en ouvrant les ports UDP RTP.
+        </p>
+      </div>
+    </div>
+    <div class="ev-block" style="margin-bottom:1rem">
+      <label>Technologies &amp; outils utilisés</label>
+      <div class="tech-pills">
+        <span class="tech-pill">Asterisk</span>
+        <span class="tech-pill">Protocole SIP</span>
+        <span class="tech-pill">RTP/RTCP</span>
+        <span class="tech-pill">Linphone</span>
+        <span class="tech-pill">Wireshark</span>
+        <span class="tech-pill">Linux Debian</span>
+        <!-- ✏️ -->
+      </div>
+    </div>
+    <div class="verdict-box blue">
+      <span class="verdict-icon blue">// VERDICT</span>
+      <p class="verdict-text">
+        <!-- ✏️ Généralisation et preuve de compétence -->
+        Ce projet prouve ma capacité à <strong>déployer et connecter des systèmes ToIP</strong> (AC12.04) 
+        et à <strong>mesurer et analyser les signaux</strong> (AC12.01). J'ai compris le modèle en couches 
+        de la communication vocale sur IP et son impact en sécurité : les flux RTP non chiffrés sont 
+        interceptables — d'où l'intérêt du SRTP en environnement professionnel.
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr class="full-sep">
+
+<!-- ═══ COMPÉTENCE 3 — PROGRAMMER ═══ -->
+<div class="competence-section" id="programmer">
+  <div class="comp-header reveal">
+    <div>
+      <span class="comp-badge badge-programmer">Compétence 03 · AC13</span>
+      <h2 class="comp-section-title amber">Programmer<br><span>des outils R&amp;T</span></h2>
+      <p class="comp-meta">Niveau 1 · S'intégrer dans un service informatique</p>
+    </div>
+    <div class="signal-bars s1" style="margin-top:1rem">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <p style="font-family:var(--fm);font-size:.7rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem">Apprentissages critiques ciblés</p>
+    <div class="ac-tags">
+      <span class="ac-tag" style="border-color:rgba(240,165,0,.25);color:var(--amber)">AC13.01 · Utiliser un système &amp; ses outils</span>
+      <span class="ac-tag" style="border-color:rgba(240,165,0,.25);color:var(--amber)">AC13.02 · Lire, exécuter, corriger un programme</span>
+      <span class="ac-tag" style="border-color:rgba(240,165,0,.25);color:var(--amber)">AC13.03 · Traduire un algorithme</span>
+      <span class="ac-tag" style="border-color:rgba(240,165,0,.25);color:var(--amber)">AC13.04 · Architecture &amp; tech Web</span>
+      <span class="ac-tag" style="border-color:rgba(240,165,0,.25);color:var(--amber)">AC13.05 · Gestion de données &amp; BDD</span>
+      <span class="ac-tag" style="border-color:rgba(240,165,0,.25);color:var(--amber)">AC13.06 · Environnement collaboratif</span>
+    </div>
+  </div>
+
+  <div class="evidence-card amber-accent reveal">
+    <div class="evidence-header">
+      <div>
+        <p style="font-family:var(--fm);font-size:.65rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">// Trace → Preuve</p>
+        <div class="evidence-title">
+          <!-- ✏️ Titre du projet de programmation -->
+          Script Python de scan réseau et inventaire des équipements
+        </div>
+      </div>
+      <span class="evidence-status status-progress">⚡ EN PROGRÈS</span>
+    </div>
+    <div class="evidence-grid">
+      <div class="ev-block">
+        <label>Trace (sur Compact)</label>
+        <p>
+          <!-- ✏️ Ta trace -->
+          Code source Git, captures d'exécution du script sur le réseau de TP, 
+          rapport documentant les fonctions, les limites et les améliorations possibles.
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Objectif</label>
+        <p>
+          <!-- ✏️ Objectif -->
+          Développer un outil en Python permettant de scanner une plage IP, d'identifier les 
+          équipements actifs, récupérer les ports ouverts et générer un rapport CSV.
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Ce que j'ai fait</label>
+        <p>
+          <!-- ✏️ Ce que tu as réalisé -->
+          Écriture d'un script Python utilisant la librairie scapy pour les pings ARP, 
+          socket pour le scan de ports, et csv pour l'export. Travail en binôme avec Git pour la gestion du code.
+        </p>
+      </div>
+      <div class="ev-block">
+        <label>Défi rencontré</label>
+        <p>
+          <!-- ✏️ -->
+          Le scan séquentiel était trop lent sur une plage /24. 
+          Introduction du threading pour paralléliser les connexions socket : 
+          temps de scan divisé par 8.
+        </p>
+      </div>
+    </div>
+    <div class="ev-block" style="margin-bottom:1rem">
+      <label>Technologies &amp; outils utilisés</label>
+      <div class="tech-pills">
+        <span class="tech-pill">Python 3</span>
+        <span class="tech-pill">Scapy</span>
+        <span class="tech-pill">Socket</span>
+        <span class="tech-pill">Threading</span>
+        <span class="tech-pill">Git / GitHub</span>
+        <span class="tech-pill">Linux CLI</span>
+        <!-- ✏️ -->
+      </div>
+    </div>
+    <div class="verdict-box amber">
+      <span class="verdict-icon amber">// VERDICT</span>
+      <p class="verdict-text">
+        <!-- ✏️ -->
+        Ce projet prouve ma capacité à <strong>traduire un algorithme en programme fonctionnel</strong> 
+        (AC13.03) et à <strong>m'intégrer dans un environnement collaboratif</strong> (AC13.06). 
+        L'outil développé est directement applicable dans un contexte professionnel de cybersécurité 
+        pour l'inventaire réseau et la détection d'équipements non autorisés.
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr class="full-sep">
+
+<!-- ═══ BILAN ═══ -->
+<section id="bilan">
+  <p class="section-label reveal">// Conclusion</p>
+  <h2 class="section-title reveal">Bilan &amp; Perspectives</h2>
+  <div class="section-divider reveal"></div>
+
+  <blockquote class="reveal">
+    <!-- ✏️ Ta phrase de synthèse personnelle (ce que l'année t'a apporté) -->
+    « Cette première année en R&T m'a révélé que la cybersécurité n'est pas une couche 
+    ajoutée par-dessus les réseaux — c'est une façon de les penser depuis le départ. »
+  </blockquote>
+
+  <div class="bilan-grid reveal">
+    <div class="bilan-card">
+      <h3>Ce que j'ai acquis</h3>
+      <p>
+        <!-- ✏️ Tes acquis de l'année -->
+        Compréhension des fondamentaux réseau (modèle OSI, TCP/IP, VLANs), 
+        premiers réflexes d'administration système sous Linux, capacité à lire 
+        et capturer des trames réseau avec Wireshark, initiation à la 
+        programmation orientée réseau en Python.
+      </p>
+    </div>
+    <div class="bilan-card">
+      <h3>Ce que je dois améliorer</h3>
+      <p>
+        <!-- ✏️ Tes axes de progression honnêtes -->
+        Approfondir les protocoles de routage dynamique (OSPF, BGP), 
+        renforcer mes compétences en scripting bash pour l'automatisation, 
+        et m'entraîner davantage sur des environnements virtualisés 
+        (GNS3, Eve-NG) pour des topologies plus complexes.
+      </p>
+    </div>
+    <div class="bilan-card">
+      <h3>Mes ambitions pour la suite</h3>
+      <p>
+        <!-- ✏️ Tes projets futurs -->
+        En S3–S4, je souhaite approfondir la sécurité offensive (pentest) 
+        et participer à des CTF en équipe. À terme, je vise un stage en 
+        SOC ou en équipe Red Team pour découvrir la réalité du métier 
+        avant la licence pro.
+      </p>
+    </div>
+    <div class="bilan-card">
+      <h3>Ce que cette année m'a révélé</h3>
+      <p>
+        <!-- ✏️ Ta prise de recul personnelle -->
+        J'ai découvert que j'apprends mieux par la pratique et par l'erreur. 
+        Chaque panne, chaque bug résolu a consolidé une compréhension que 
+        les cours théoriques seuls n'auraient pas pu donner. Le travail 
+        en équipe sur les SAé a aussi développé mes soft skills.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <span class="footer-logo">
+    <!-- ✏️ Ton nom -->
+    [Prénom NOM]
+  </span>
+  <span>BUT R&amp;T · Option Cybersécurité · SAE 205 · 2024–2025</span>
+  <span>IUT [Ville] · Département R&amp;T</span>
+</footer>
+
+<script>
+/* Scroll reveal */
+const els = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+els.forEach(el => obs.observe(el));
+
+/* Smooth nav active state */
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if(window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+current ? 'var(--teal)' : '';
+  });
+}, {passive:true});
+</script>
+</body>
+</html>
